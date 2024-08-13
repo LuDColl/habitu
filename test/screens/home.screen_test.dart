@@ -1,10 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:habitu/screens/home.screen.dart';
 
 void main() {
-  test('Criar a Home', () {
+  testWidgets('Iniciar e Parar Cronômetro', (tester) async {
     const home = HomeScreen();
-    final element = home.createElement();
-    expect(element.mounted, true);
+    const app = MaterialApp(home: home);
+    await tester.pumpWidget(app);
+
+    final button = find.byType(ElevatedButton);
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+    final parar = find.text('Parar');
+    expect(parar, findsOneWidget);
+
+    await tester.tap(button);
+    await tester.pumpAndSettle();
+    final iniciar = find.text('Iniciar');
+    expect(iniciar, findsOneWidget);
   });
 }

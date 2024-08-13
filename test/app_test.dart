@@ -2,9 +2,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:habitu/app.dart';
 
 void main() {
-  test('Criar o App', () {
+  testWidgets('Criar o App', (tester) async {
     const app = App();
-    final element = app.createElement();
-    expect(element.mounted, true);
+    await tester.pumpWidget(app);
+
+    final findApp = find.byType(App);
+    expect(findApp, findsOneWidget);
   });
 }
