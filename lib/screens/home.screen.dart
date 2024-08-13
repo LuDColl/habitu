@@ -9,7 +9,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final stopwatch = Stopwatch();
-  String elapsedTime = '00:00:00.00';
+  String elapsedTime = '00:00:00.0';
 
   bool get isRunning => stopwatch.isRunning;
 
@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
     stopwatch.reset();
     stopwatch.start();
     Future.doWhile(() async {
-      await Future.delayed(const Duration(milliseconds: 10));
+      await Future.delayed(const Duration(milliseconds: 100));
       updateElapsedTime();
       return isRunning;
     });
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   updateElapsedTime() {
     final elapsed = stopwatch.elapsed.toString();
-    final elapsedTime = elapsed.substring(0, 10);
+    final elapsedTime = elapsed.substring(0, 9);
     setState(() => this.elapsedTime = elapsedTime);
   }
 }
