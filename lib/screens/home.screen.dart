@@ -15,19 +15,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Habitu'),
+        title: Text('Habitu', style: textTheme.headlineMedium),
       ),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(elapsedTime),
+            Text(elapsedTime, style: textTheme.displaySmall),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: isRunning ? stop : start,
-              child: Text(isRunning ? 'Parar' : 'Iniciar'),
+              child: Text(
+                isRunning ? 'Parar' : 'Iniciar',
+                style: textTheme.displaySmall,
+              ),
             ),
           ],
         ),
